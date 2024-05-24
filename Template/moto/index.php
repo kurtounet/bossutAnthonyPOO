@@ -1,5 +1,9 @@
 Toutes les moto
 <?php
+require_once("vendor/autoload.php");
+
+use Src\Entity\Moto;
+
 
 ?>
 
@@ -20,15 +24,15 @@ Toutes les moto
 
 
 <h1>Liste des Motos</h1>
-<h1><?php echo ($type ?? "") ?></h1>
+
 <a href="http://localhost/bossutAnthonyPOO/index.php/moto/add" class="btn btn-primary">Ajouter une Moto</a>
-<form action="" method="POST">
+<form action="http://localhost/bossutAnthonyPOO/index.php/moto/" method="POST">
     <select name="type">
         <option value="">Tous les types</option>
-        <option value="Enduro">Enduro</option>
-        <option value="Custom">Custom</option>
-        <option value="Sportive">Sportive</option>
-        <option value="Roadster">Roadster</option>
+        <option value="http://localhost/bossutAnthonyPOO/index.php/moto/Enduro">Enduro</option>
+        <option value="http://localhost/bossutAnthonyPOO/index.php/moto/Custom">Custom</option>
+        <option value="http://localhost/bossutAnthonyPOO/index.php/moto/Sportive">Sportive</option>
+        <option value="http://localhost/bossutAnthonyPOO/index.php/moto/Roadster">Roadster</option>
     </select>
     <button type="submit">Filter</button>
 </form>

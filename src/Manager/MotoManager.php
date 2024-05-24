@@ -15,12 +15,13 @@ class MotoManager extends DatabaseManager
         $query = $this->getConnection()->prepare("SELECT * FROM motos ORDER BY id DESC");
         $query->execute();
         $results = $query->fetchAll();
-        /*
+
         $motos = [];
         foreach ($results as $result) {
             $motos[] = Moto::fromArray($result);
-        }*/
-        return $results;
+        }
+
+        return $motos;
     }
     public function findByType($Type)
     {

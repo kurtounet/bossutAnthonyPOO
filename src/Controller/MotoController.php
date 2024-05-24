@@ -22,7 +22,7 @@ class MotoController
     public function getAll()
     {
         $motos = $this->motoManager->findAll();
-        //dump($motos);
+        dump($motos);
         //Appel de template
         include(__DIR__ . "/../../Template/moto/index.php");
     }
@@ -38,18 +38,11 @@ class MotoController
     // Route: /moto/$type
     public function getByType($type)
     {
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (in_array($_POST['type'], ['Enduro', 'Custom', 'Sportive', 'Roadster'])) {
-
-                $motos = $this->motoManager->findByType($type);
-                echo "ROUTE: /moto/$type   (getByType)";
-            } else {
-                echo "ROUTE: /moto/$type   (getByType)";
-                $motos = $this->motoManager->findAll();
-            }
+        // La requete fonctionne que pour les types suivants
+        if (in_array($type, ['Enduro', 'Custom', 'Sportive', 'Roadster'])) {
+            $motos = $this->motoManager->findByType($type);
         } else {
-            $type = "RIEN";
+            $motos = $this->motoManager->findAll();
         }
 
         include(__DIR__ . "/../../Template/moto/index.php");
