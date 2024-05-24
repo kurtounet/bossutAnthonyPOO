@@ -5,6 +5,7 @@ namespace Src\Manager;
 
 use Src\Entity\Moto;
 use PDO;
+use Exception;
 
 class MotoManager extends DatabaseManager
 {
@@ -15,7 +16,6 @@ class MotoManager extends DatabaseManager
         $query = $this->getConnection()->prepare("SELECT * FROM motos ORDER BY id DESC");
         $query->execute();
         $results = $query->fetchAll();
-
         $motos = [];
         foreach ($results as $result) {
             $motos[] = Moto::fromArray($result);
@@ -23,18 +23,38 @@ class MotoManager extends DatabaseManager
 
         return $motos;
     }
-    public function findByType($Type)
-    {
-        $query = $this->getConnection()->prepare("SELECT * FROM motos WHERE type = :type");
-        $query->execute([':type' => $Type]);
-        return $query->fetchAll();
-    }
+
     public function findById($id)
     {
         $query = $this->getConnection()->prepare("SELECT * FROM motos WHERE id = :id");
         $query->execute([':id' => $id]);
         $result = $query->fetch();
-        return new Moto($result["id"], $result["brand"], $result["model"], $result["type"], $result["price"], $result["image"]);
+
+        if ($result != false) {
+            return Moto::fromArray($result);
+        } else {
+            return false;
+        }
+
+
+    }
+    public function findByType($Type)
+    {
+        $query = $this->getConnection()->prepare("SELECT * FROM motos WHERE type = :type");
+        $query->execute([':type' => $Type]);
+        $results = $query->fetchAll();
+        $motos = [];
+
+        foreach ($results as $result) {
+            $motos[] = Moto::fromArray($result);
+        }
+
+        if ($results != false) {
+            return $motos;
+        } else {
+            return false;
+        }
+
     }
     public function add(Moto $moto)
     {
@@ -70,7 +90,15 @@ class MotoManager extends DatabaseManager
 
     public function delete($id)
     {
-        $query = $this->getConnection()->prepare("DELETE FROM motos WHERE id = :id");
-        $query->execute([':id' => $id]);
+
+        try {
+            $query = $this->getConnection()->prepare("DELETE FROM motos WHERE id=:id");
+            $query->execute([
+                ":id" => $id
+            ]);
+        } catch (Exception $e) {
+            echo ("Error during the connection to DataBase: " . $e->getMessage());
+            exit;
+        }
     }
 }

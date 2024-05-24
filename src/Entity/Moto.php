@@ -4,15 +4,15 @@ namespace Src\Entity;
 
 class Moto
 {
-    private int|null $id;
+    private int $id;
     private string $brand;
     private string $model;
     private string $type;
     private float $price;
     private string $image;
 
-    // Constructor with type declarations
-    public function __construct(int|null $id = 0, string $brand, string $model, string $type, float $price, string $image)
+
+    public function __construct(int $id, string $brand, string $model, string $type, float $price, string $image)
     {
         $this->id = $id;
         $this->brand = $brand;
@@ -27,7 +27,7 @@ class Moto
         return new self($array["id"], $array["brand"], $array["model"], $array["type"], $array["price"], $array["image"]);
     }
 
-    // Getters
+
     public function getId(): int
     {
         return $this->id;

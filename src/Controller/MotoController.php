@@ -23,14 +23,14 @@ class MotoController
     {
         $motos = $this->motoManager->findAll();
         //Appel de template
-        include(__DIR__ . "/../../Template/moto/index.php");
+        include (__DIR__ . "/../../Template/moto/index.php");
     }
 
     // Route: /moto/$id
     public function getById($id)
     {
         $moto = $this->motoManager->findById($id);
-        include(__DIR__ . "/../../Template/moto/detailmoto.php");
+        include (__DIR__ . "/../../Template/moto/detail.php");
         //echo "ROUTE: /moto/$id   (getById)";
     }
 
@@ -44,7 +44,7 @@ class MotoController
             $motos = $this->motoManager->findAll();
         }
 
-        include(__DIR__ . "/../../Template/moto/index.php");
+        include (__DIR__ . "/../../Template/moto/index.php");
     }
 
     // Route: /moto/add/
@@ -66,13 +66,13 @@ class MotoController
                 && isset($_POST['price'])
                 && isset($_POST['image'])
             ) {
-                $moto = new Moto(null, $_POST['brand'], $_POST['model'], $_POST['type'], $_POST['price'], $_POST['image']);
+                $moto = new Moto(0, $_POST['brand'], $_POST['model'], $_POST['type'], $_POST['price'], $_POST['image']);
                 $this->motoManager->add($moto);
                 header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
             }
         } else {
             $error = 'Tous les champs doivent etre remplis et de type Enduro, Custom, Sportive, Roadster';
-            include(__DIR__ . "/../../Template/moto/addform.php");
+            include (__DIR__ . "/../../Template/moto/add.php");
         }
     }
 
@@ -90,7 +90,7 @@ class MotoController
                 && isset($_POST['model'])
                 && isset($_POST['type'])
                 && isset($_POST['price'])
-                &&  isset($_POST['image'])
+                && isset($_POST['image'])
             ) {
 
                 $moto = new Moto($_POST['id'], $_POST['brand'], $_POST['model'], $_POST['type'], $_POST['price'], $_POST['image']);
@@ -100,7 +100,7 @@ class MotoController
         } else {
             $moto = $this->motoManager->findById($id);
             $error = "Tous les champs doivent etre remplis";
-            include(__DIR__ . "/../../Template/moto/editform.php");
+            include (__DIR__ . "/../../Template/moto/edit.php");
         }
     }
 
