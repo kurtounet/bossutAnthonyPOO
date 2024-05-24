@@ -22,7 +22,6 @@ class MotoController
     public function getAll()
     {
         $motos = $this->motoManager->findAll();
-        dump($motos);
         //Appel de template
         include(__DIR__ . "/../../Template/moto/index.php");
     }
@@ -32,7 +31,7 @@ class MotoController
     {
         $moto = $this->motoManager->findById($id);
         include(__DIR__ . "/../../Template/moto/detailmoto.php");
-        echo "ROUTE: /moto/$id   (getById)";
+        //echo "ROUTE: /moto/$id   (getById)";
     }
 
     // Route: /moto/$type

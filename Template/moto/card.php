@@ -6,7 +6,7 @@
         <p class="card-text">Marque :<?php echo ($moto->getBrand()); ?></p>
         <p class="card-text">prix : <?php echo ($moto->getPrice()); ?></p>
     </div>
-    <div class="col d-flex justify-content-around m-1" style="width: 100%; height: 10%;">
+    <div class="col d-flex justify-content-around m-1" style="width: 100%;">
         <a href="http://localhost/bossutAnthonyPOO/index.php/moto/edit/<?php echo ($moto->getId()); ?>" class="btn btn-primary">Modifier</a>
 
         <form action=" http://localhost/bossutAnthonyPOO/index.php/moto/delete/<?php echo ($moto->getId()); ?>" method="POST" onsubmit="return confirm('Êtes vous sur de vouloir supprimer ?');">

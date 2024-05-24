@@ -33,7 +33,8 @@ class MotoManager extends DatabaseManager
     {
         $query = $this->getConnection()->prepare("SELECT * FROM motos WHERE id = :id");
         $query->execute([':id' => $id]);
-        return $query->fetch();
+        $result = $query->fetch();
+        return new Moto($result["id"], $result["brand"], $result["model"], $result["type"], $result["price"], $result["image"]);
     }
     public function add(Moto $moto)
     {
