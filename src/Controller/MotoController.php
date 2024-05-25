@@ -137,42 +137,49 @@ class MotoController
     // Route: /moto/edit/$id
     public function edit(int $id)
     {
-        $error = [];
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //On verifie si $_FILES["avatar"]["name"] existe (fichier sélectionné) et 
-            //si la variable name n'est pas vide
-            if (isset($_FILES["avatar"]["name"]) && !empty($_FILES["avatar"]["name"])) {
-                //Si c'est le cas, on appel la fonction uploadFile, qui télécharge le fichier et 
-                // returne l'url de l'image, puis on affecte cette url a $_POST["imageUrl"]
-                $_POST["image"] = $this->uploadFile();
+        $moto = $this->motoManager->findById($id);
+        if ($moto === false) {
+            $error = "Aucune moto n'a été trouvée";
+            include (__DIR__ . "/../../Template/moto/errors.php");
+        } else {
+            $error = [];
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                //On verifie si $_FILES["avatar"]["name"] existe (fichier sélectionné) et 
+                //si la variable name n'est pas vide
+                if (isset($_FILES["avatar"]["name"]) && !empty($_FILES["avatar"]["name"])) {
+                    //Si c'est le cas, on appel la fonction uploadFile, qui télécharge le fichier et 
+                    // returne l'url de l'image, puis on affecte cette url a $_POST["imageUrl"]
+                    $_POST["image"] = $this->uploadFile();
 
-            }
-            if (
-                isset(
-                $_POST['id'],
-                $_POST['brand'],
-                $_POST['model'],
-                $_POST['type'],
-                $_POST['price'],
-                $_POST['image']
-            )
-                && !empty(trim($_POST['id'])) && !empty(trim($_POST['brand']))
-                && !empty(trim($_POST['model'])) && !empty(trim($_POST['type']))
-                && !empty(trim($_POST['image']))
-            ) {
+                }
+                if (
+                    isset(
+                    $_POST['id'],
+                    $_POST['brand'],
+                    $_POST['model'],
+                    $_POST['type'],
+                    $_POST['price'],
+                    $_POST['image']
+                )
+                    && !empty(trim($_POST['id'])) && !empty(trim($_POST['brand']))
+                    && !empty(trim($_POST['model'])) && !empty(trim($_POST['type']))
+                    && !empty(trim($_POST['image']))
+                ) {
 
-                $moto = new Moto($_POST['id'], $_POST['brand'], $_POST['model'], $_POST['type'], $_POST['price'], $_POST['image']);
-                $this->motoManager->edit($moto);
-                header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
+                    $moto = new Moto($_POST['id'], $_POST['brand'], $_POST['model'], $_POST['type'], $_POST['price'], $_POST['image']);
+                    $this->motoManager->edit($moto);
+                    header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
+                } else {
+                    $moto = $this->motoManager->findById($id);
+                    $error[] = 'Tous les champs doivent etre remplis et de type Enduro, Custom, Sportive, Roadster';
+                    include (__DIR__ . "/../../Template/moto/edit.php");
+                }
             } else {
                 $moto = $this->motoManager->findById($id);
-                $error[] = 'Tous les champs doivent etre remplis et de type Enduro, Custom, Sportive, Roadster';
                 include (__DIR__ . "/../../Template/moto/edit.php");
             }
-        } else {
-            $moto = $this->motoManager->findById($id);
-            include (__DIR__ . "/../../Template/moto/edit.php");
         }
+
     }
 
     // Route: /moto/delete/$id

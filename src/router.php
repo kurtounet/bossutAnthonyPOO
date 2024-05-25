@@ -9,7 +9,7 @@ class Router
 
     private string $uri;
 
-    const  BASE_PATH = '/index.php/';
+    const BASE_PATH = '/index.php/';
 
     public function __construct()
     {
@@ -20,7 +20,7 @@ class Router
     private function getRoute(array $segments)
     {
         $mainRoute = !empty($segments[0]) ? $segments[0] : null;
-        $subRoute =  !empty($segments[1]) ? $segments[1] : null;
+        $subRoute = !empty($segments[1]) ? $segments[1] : null;
         switch ($mainRoute) {
 
             case 'moto':
@@ -43,7 +43,8 @@ class Router
 
                             $motoController->edit($segments[2]);
                         } else {
-                            echo "ROUTE: /moto/edit/ Bad Request: Missing ID";
+                            // echo "ROUTE: /moto/edit/ Bad Request: Missing ID";
+                            header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
                         }
 
                         break;
@@ -55,7 +56,8 @@ class Router
 
                             $motoController->delete($segments[2]);
                         } else {
-                            echo "ROUTE: /moto/delete/  Request: Missing ID";
+                            //echo "ROUTE: /moto/delete/  Request: Missing ID";
+                            header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
                         }
 
                         break;
@@ -81,7 +83,8 @@ class Router
             default:
                 // Si $mainRoute ne correspond à aucune route connue
                 //Dans notre exemple il n'y a que /service, 
-                echo "Page not found";
+                header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
+                //echo "Page not found";
                 break;
         }
     }
