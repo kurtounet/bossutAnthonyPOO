@@ -137,21 +137,19 @@ class MotoController
     // Route: /moto/edit/$id
     public function edit(int $id)
     {
+        $error = [];
         $moto = $this->motoManager->findById($id);
-        if ($moto === false) {
-            $error = "Aucune moto n'a été trouvée";
-            include (__DIR__ . "/../../Template/moto/errors.php");
-        } else {
-            $error = [];
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($moto instanceof Moto) {
+            if ($_SERVER['REQUEST_METHOD'] === "POST") {
+
                 //On verifie si $_FILES["avatar"]["name"] existe (fichier sélectionné) et 
                 //si la variable name n'est pas vide
                 if (isset($_FILES["avatar"]["name"]) && !empty($_FILES["avatar"]["name"])) {
                     //Si c'est le cas, on appel la fonction uploadFile, qui télécharge le fichier et 
                     // returne l'url de l'image, puis on affecte cette url a $_POST["imageUrl"]
                     $_POST["image"] = $this->uploadFile();
-
                 }
+
                 if (
                     isset(
                     $_POST['id'],
@@ -170,33 +168,39 @@ class MotoController
                     $this->motoManager->edit($moto);
                     header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
                 } else {
-                    $moto = $this->motoManager->findById($id);
+
                     $error[] = 'Tous les champs doivent etre remplis et de type Enduro, Custom, Sportive, Roadster';
                     include (__DIR__ . "/../../Template/moto/edit.php");
                 }
+
+
             } else {
-                $moto = $this->motoManager->findById($id);
+
                 include (__DIR__ . "/../../Template/moto/edit.php");
             }
-        }
+        } else {
 
+            $error = "Aucune moto n'a été trouvée";
+            include (__DIR__ . "/../../Template/moto/errors.php");
+        }
     }
 
     // Route: /moto/delete/$id
     public function delete($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $moto = $this->motoManager->findById($id);
-            if ($moto === false) {
-                $error = "Aucune moto n'a été trouvée";
-                include (__DIR__ . "/../../Template/moto/errors.php");
-            } else {
+        $moto = $this->motoManager->findById($id);
+        if ($moto instanceof Moto) {
+            if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $this->motoManager->delete($id);
-                header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
-            }
+                header("Location: http://localhost/bossutAnthonyPOO/index.php/moto/");
+            } else {
 
+                header("Location: http://localhost/bossutAnthonyPOO/index.php/moto/");
+            }
         } else {
-            header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
+            $error = "Aucune moto n'a été trouvée";
+            include (__DIR__ . "/../../Template/moto/errors.php");
         }
+
     }
 }
