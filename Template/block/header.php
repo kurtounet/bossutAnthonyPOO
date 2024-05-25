@@ -42,7 +42,7 @@ $title = "Concession Motos";
 
 </head>
 
-<body>
+<body> 
       <?php
       include_once (__DIR__ . "/navbar.php");
       ?>
