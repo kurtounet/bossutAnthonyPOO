@@ -25,6 +25,21 @@ $title = "Concession Motos";
             integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
             crossorigin="anonymous"></script>
 
+            <style>
+                  img {                        
+                                               
+                        object-fit: contain; 
+                        object-position: center;
+                        width: 200px;
+                        height: 150px;
+                        
+                  }
+                  .myCard {
+                        width: 250px;
+                        height: 350px;                       
+                  }
+            </style>
+
 </head>
 
 <body>
