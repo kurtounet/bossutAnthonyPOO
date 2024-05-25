@@ -11,6 +11,7 @@
             </p>
             <p class="card-text">Prix :
                 <?php echo ($moto->getPrice()); ?>
+                €
             </p>
         </div>
     </div>

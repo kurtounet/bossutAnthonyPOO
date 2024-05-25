@@ -55,7 +55,7 @@ class MotoController
             $error = "Aucune moto n'a été trouvée";
             include (__DIR__ . "/../../Template/moto/errors.php");
         } else {
-
+            $selectedType = $type;
             include (__DIR__ . "/../../Template/moto/index.php");
         }
 

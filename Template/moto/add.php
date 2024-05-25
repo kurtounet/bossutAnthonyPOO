@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="mb-3">
                     <label for="price" class="form-label">Prix:</label>
                     <input type="number" id="price" name="price" class="form-control" value="10000" required>
+                    <p> €</p>
                 </div>
 
                 <div class="mb-3">

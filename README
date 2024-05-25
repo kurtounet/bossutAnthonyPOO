@@ -1,0 +1,12 @@
+je fait 
+Création BDD / Contraintes : fait-> database.sql
+Utilisation du modèle MVC :
+Controller: fait -> Src/Controller
+Model: fait -> src/Entity
+Manager: fait -> Manager : DatabaseManager et MotoManager
+Templates / UX UI : fait ->  Templates/moto
+
+Fonctionnalités de filtre : fait
+Fonctionnalités UploadFile : fait -> Dans MotoController
+
+Git: fait
