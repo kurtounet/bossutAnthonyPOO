@@ -1,29 +1,7 @@
 <?PHP
-
-/*
-use Src\Controller\MotoController;
-
-$motoController = new MotoController();
-// Configuration de la base de données
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST["imageUrl"], $_POST["contenu"], $_POST["titre"], $_POST["auteur"])) {
-        $motoController->add($_POST);
-    }
-}
-*/
+include_once (__DIR__ . "/../../Template/block/header.php");
 ?>
-<!DOCTYPE html>
-<html lang="fr">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?php echo ($title ?? "Default Title") ?></title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-    </head>
-
-    <body>
         <div class="container col-md-6 mx-auto p-3 shadow">
             <h1>Ajouter une Moto</h1>
             <?php
@@ -73,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
 
-    </body>
-
-</html>
-
+<?PHP
+include_once (__DIR__ . "/../../Template/block/footer.php");
+?>
