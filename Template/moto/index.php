@@ -1,12 +1,3 @@
-Toutes les moto
-<?php
-require_once ("vendor/autoload.php");
-
-use Src\Entity\Moto;
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 

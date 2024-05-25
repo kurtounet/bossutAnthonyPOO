@@ -11,20 +11,26 @@ class MotoManager extends DatabaseManager
 {
 
 
-    public function findAll()
+    public function findAll(): array|false
     {
         $query = $this->getConnection()->prepare("SELECT * FROM motos ORDER BY id DESC");
         $query->execute();
         $results = $query->fetchAll();
         $motos = [];
-        foreach ($results as $result) {
-            $motos[] = Moto::fromArray($result);
+        if ($results != false) {
+            foreach ($results as $result) {
+                $motos[] = Moto::fromArray($result);
+            }
+            return $motos;
+
+        } else {
+            return false;
         }
 
-        return $motos;
+
     }
 
-    public function findById($id)
+    public function findById($id): Moto|false
     {
         $query = $this->getConnection()->prepare("SELECT * FROM motos WHERE id = :id");
         $query->execute([':id' => $id]);
@@ -38,25 +44,24 @@ class MotoManager extends DatabaseManager
 
 
     }
-    public function findByType($Type)
+    public function findByType($Type): array|false
     {
         $query = $this->getConnection()->prepare("SELECT * FROM motos WHERE type = :type");
         $query->execute([':type' => $Type]);
         $results = $query->fetchAll();
         $motos = [];
 
-        foreach ($results as $result) {
-            $motos[] = Moto::fromArray($result);
-        }
-
         if ($results != false) {
+            foreach ($results as $result) {
+                $motos[] = Moto::fromArray($result);
+            }
             return $motos;
         } else {
             return false;
         }
 
     }
-    public function add(Moto $moto)
+    public function add(Moto $moto): void
     {
         $query = $this->getConnection()->prepare(
             "INSERT INTO motos (brand, model, type, price, image) 
@@ -71,7 +76,7 @@ class MotoManager extends DatabaseManager
         ]);
     }
 
-    public function edit(Moto $moto)
+    public function edit(Moto $moto): void
     {
         $query = $this->getConnection()->prepare(
             "UPDATE motos 
@@ -88,7 +93,7 @@ class MotoManager extends DatabaseManager
         ]);
     }
 
-    public function delete($id)
+    public function delete($id): void
     {
 
         try {
@@ -97,7 +102,7 @@ class MotoManager extends DatabaseManager
                 ":id" => $id
             ]);
         } catch (Exception $e) {
-            echo ("Error during the connection to DataBase: " . $e->getMessage());
+            echo ("Une erreur est survenue." . $e->getMessage());
             exit;
         }
     }
