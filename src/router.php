@@ -44,7 +44,7 @@ class Router
                             $motoController->edit($segments[2]);
                         } else {
                             // echo "ROUTE: /moto/edit/ Bad Request: Missing ID";
-                            header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
+                            header('Location: http://localhost/bossutAnthonyPOO/index.php/moto/');
                         }
 
                         break;
@@ -57,7 +57,7 @@ class Router
                             $motoController->delete($segments[2]);
                         } else {
                             //echo "ROUTE: /moto/delete/  Request: Missing ID";
-                            header('Location: http://localhost/bossutAnthonyPOO/index.php/moto');
+                            header('Location: http://localhost/bossutAnthonyPOO/index.php/moto/');
                         }
 
                         break;

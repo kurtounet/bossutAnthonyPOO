@@ -1,12 +1,17 @@
-je fait 
-Création BDD / Contraintes : fait-> database.sql
-Utilisation du modèle MVC :
-Controller: fait -> Src/Controller
-Model: fait -> src/Entity
-Manager: fait -> Manager : DatabaseManager et MotoManager
-Templates / UX UI : fait ->  Templates/moto
+Voila mon exam, je pense ne rien avoir oublier.
 
-Fonctionnalités de filtre : fait
-Fonctionnalités UploadFile : fait -> Dans MotoController
+j'ai fais:
+    Création BDD / Contraintes : fait-> database.sql
+    Utilisation du modèle MVC :
+        Controller: fait -> Src/Controller
+        Model: fait -> src/Entity
+        Manager: fait -> Manager : DatabaseManager et MotoManager
+        Templates / UX UI : fait ->  Templates/moto
 
-Git: fait
+    Fonctionnalités de filtre : fait
+    Fonctionnalités UploadFile : fait -> Dans MotoController
+
+    Git: fait
+
+j'ai fais des redirections vers index.php/moto/
+dans le router pour : edit/  , delete/ , default:
