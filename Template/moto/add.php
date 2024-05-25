@@ -57,12 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="mb-3">
                     <label for="price" class="form-label">Prix:</label>
                     <input type="number" id="price" name="price" class="form-control" value="10000" required>
-                    <p> €</p>
+                    <p>
+                        €</p>
                 </div>
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Image (URL):</label>
-                    <input type="url" id="image" name="image" class="form-control" value="https://picsum.photos/id/236/200/200">
+                    <input type="url" id="image" name="image" class="form-control" value="http://localhost/bossutAnthonyPOO/assets/images/motorbike.png" required/>
                     <input type="file" name="avatar">
                 </div>
 
